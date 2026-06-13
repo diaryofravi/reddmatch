@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ravi</title> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+  --white:    #ffffff;
+  --bg:       #faf8f2;
+  --surface:  #f5f0e0;
+  --rule:     #e8e0c8;
+  --stone:    #c8bb8a;
+  --muted:    #8a7d50;
+  --body:     #3d3520;
+  --ink:      #32291a;
+  --earth:    #c49800;
+  --earth-l:  #e0b000;
+  --earth-bg: #f5f0d8;
+  --nav-h:    52px;
+  --contact-bg: #2a1d0a;
+}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--body);
+      -webkit-font-smoothing: antialiased;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-in {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-name {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .78rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--earth); }
+
+    .nav-cta {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--earth);
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--earth-l); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: calc(var(--nav-h) + 4rem) 1.5rem 4rem;
+      text-align: center;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-inner { max-width: 560px; margin: 0 auto; }
+
+    .photo {
+      width: clamp(90px, 20vw, 120px);
+      height: clamp(90px, 20vw, 120px);
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      margin: 0 auto 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      overflow: hidden;
+      animation: up .8s ease both;
+    }
+
+    .photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: .8rem;
+      animation: up .8s .1s ease both;
+    }
+
+    .hero-sub {
+      font-size: clamp(.78rem, 2vw, .88rem);
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 1.6rem;
+      line-height: 1.6;
+      animation: up .8s .15s ease both;
+    }
+
+    .hero-identity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .4rem .8rem;
+      animation: up .8s .2s ease both;
+    }
+
+    .ident-item {
+      font-size: clamp(.72rem, 2vw, .82rem);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    .ident-item em { font-style: normal; color: var(--earth-l); }
+    .ident-sep { font-size: .7rem; color: var(--stone); font-weight: 300; }
+
+    /* ── SECTION BASE ── */
+    section { border-bottom: 1px solid var(--rule); }
+    .sec { padding: clamp(3rem, 8vw, 5.5rem) 1.5rem; }
+
+    .sec-in {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .sec-alt { background: var(--bg); }
+
+    .tag {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .tag::after { content: ''; display: block; height: 1px; width: 32px; background: var(--stone); }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 500;
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    p.desc {
+      font-size: clamp(.88rem, 2vw, .97rem);
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    /* ── ABOUT GRID ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 2rem;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+    }
+
+    .about-item {
+      padding: .8rem .8rem .8rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+    }
+
+    .about-k { font-size: .62rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); }
+    .about-v { font-size: clamp(.8rem, 2vw, .92rem); font-weight: 400; color: var(--ink); }
+
+    /* ── INTEREST LIST ── */
+    .interest-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 1.8rem;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+    }
+
+    .interest-item {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .75rem .5rem .75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .i-icon { font-size: .95rem; flex-shrink: 0; line-height: 1; }
+    .i-text { font-size: clamp(.8rem, 2vw, .9rem); font-weight: 400; color: var(--body); }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    .gal-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--surface);
+      aspect-ratio: 4/3;
+      cursor: zoom-in;
+      min-height: 100px;
+    }
+
+    .gal-item.gal-tall { grid-row: span 2; aspect-ratio: unset; }
+
+    .gal-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .gal-item:hover img { transform: scale(1.04); }
+
+    .gal-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: .5rem .75rem;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .gal-item:hover .gal-label { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 8, 6, 0.96);
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-overlay.active { display: flex; }
+
+    .lb-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.4rem;
+      background: rgba(0,0,0,0.45);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .lb-title {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .lb-counter {
+      font-size: .7rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 300;
+      letter-spacing: .06em;
+    }
+
+    .lb-close {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.65);
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+    .lb-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 54px 72px 90px;
+    }
+
+    .lb-img-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 88vw;
+      max-height: calc(100vh - 180px);
+    }
+
+    .lb-img-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      cursor: default;
+    }
+
+    #lb-img {
+      max-width: 100%;
+      max-height: calc(100vh - 180px);
+      object-fit: contain;
+      border-radius: 5px;
+      box-shadow: 0 32px 100px rgba(0,0,0,0.8);
+      transition: opacity .22s ease;
+      display: block;
+      user-select: none;
+    }
+
+    #lb-img.fading { opacity: 0; }
+
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255,255,255,0.65);
+      transition: background .2s, color .2s, transform .2s;
+      z-index: 10;
+    }
+
+    .lb-btn:hover {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lb-prev { left: -62px; }
+    .lb-next { right: -62px; }
+    .lb-btn svg { width: 18px; height: 18px; }
+
+    .lb-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.5);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 0 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .lb-bottom::-webkit-scrollbar { display: none; }
+
+    .lb-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 5px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.45;
+      transition: opacity .2s, border-color .2s, transform .2s;
+    }
+
+    .lb-thumb:hover { opacity: 0.75; transform: scale(1.05); }
+
+    .lb-thumb.active {
+      border-color: var(--earth-l);
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── FAMILY LIST ── */
+    .family-list {
+      margin-top: 1.8rem;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .family-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: .75rem 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 1rem;
+    }
+
+    .f-role { font-size: .62rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); flex-shrink: 0; }
+    .f-detail { font-size: clamp(.8rem, 2vw, .9rem); font-weight: 400; color: var(--body); text-align: right; }
+
+    /* ── QUOTE ── */
+    .quote-wrap {
+      background: var(--surface);
+      border-left: 3px solid var(--earth);
+      padding: 1.5rem 2rem;
+      border-radius: 0 10px 10px 0;
+      margin-top: 1.8rem;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .quote-wrap p { font-size: clamp(.95rem, 2.2vw, 1.05rem); font-style: italic; color: var(--ink); line-height: 1.8; }
+
+    /* ── LF CARDS ── */
+    .lf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 2rem; width: 100%; }
+
+    .lf-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .lf-card:hover { border-color: var(--earth); transform: translateY(-2px); }
+
+    .lf-num { font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--earth-l); margin-bottom: .6rem; }
+    .lf-card h3 { font-size: clamp(.88rem, 2vw, 1rem); font-weight: 500; color: var(--ink); margin-bottom: .35rem; letter-spacing: -.01em; }
+    .lf-card p  { font-size: clamp(.78rem, 1.8vw, .83rem); color: var(--muted); line-height: 1.6; }
+
+    /* ── NON-NEGOTIABLES ── */
+    .nn-wrap {
+      margin-top: 2.8rem;
+      width: 100%;
+      padding-top: 2.2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .nn-tag {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .nn-tag::after { content: ''; display: block; height: 1px; width: 32px; background: var(--stone); }
+
+    .nn-title {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .nn-body {
+      font-size: clamp(.88rem, 2vw, .97rem);
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 640px;
+      margin-bottom: .9rem;
+    }
+
+    .nn-callout {
+      background: var(--earth-bg);
+      border: 1px solid rgba(196,152,0,0.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1.4rem;
+      max-width: 640px;
+    }
+
+    .nn-callout p {
+      font-size: clamp(.85rem, 2vw, .93rem);
+      color: var(--body);
+      line-height: 1.8;
+    }
+
+    /* ── COOKING GALLERY ── */
+    .cook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 1.8rem;
+      width: 100%;
+    }
+
+    .cook-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--surface);
+      aspect-ratio: 1/1;
+      cursor: zoom-in;
+    }
+
+    .cook-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .cook-item:hover img { transform: scale(1.04); }
+
+    .cook-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: .45rem .7rem;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .cook-item:hover .cook-label { opacity: 1; }
+
+    @media (max-width: 480px) {
+      .cook-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    }
+
+    /* ── CONTACT ── */
+    .contact-sec {
+      background: var(--contact-bg);
+      padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+      text-align: center;
+    }
+    .contact-sec h2 { color: var(--earth-l); margin-bottom: .8rem; }
+    .contact-sec .desc { color: #b09a72; margin: 0 auto 2rem; text-align: center; }
+
+    .insta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      color: #b09a72;
+      border: 1px solid rgba(196, 152, 0, 0.3);
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+
+    .insta-link:hover { border-color: var(--earth-l); color: var(--earth-l); transform: translateY(-1px); }
+    .insta-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .insta-handle { font-size: .88rem; font-weight: 400; letter-spacing: .02em; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .8rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    footer p { font-size: .72rem; color: var(--stone); }
+    footer ul { list-style: none; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    footer ul a { font-size: .72rem; color: var(--stone); text-decoration: none; transition: color .2s; }
+    footer ul a:hover { color: var(--earth); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .reveal { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s ease; }
+    .js-ready .reveal { opacity: 0; transform: translateY(20px); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE — TABLET ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      .interest-list { grid-template-columns: repeat(2, 1fr); }
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .gal-item.gal-tall { grid-row: span 1; aspect-ratio: 4/3; }
+      .lf-grid { grid-template-columns: repeat(2, 1fr); }
+      .family-list { max-width: 100%; }
+      footer { justify-content: center; text-align: center; }
+      footer ul { justify-content: center; }
+      .lb-prev { left: -52px; }
+      .lb-next { right: -52px; }
+    }
+
+    /* ── RESPONSIVE — MOBILE ── */
+    @media (max-width: 480px) {
+      .nav-cta { display: none; }
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-item { padding: .7rem .5rem .7rem 0; }
+      .interest-list { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+      .lf-grid { grid-template-columns: 1fr; }
+      .quote-wrap { padding: 1.2rem 1.4rem; }
+      .hero { padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 3rem; }
+      .lb-stage { padding: 54px 14px 90px; }
+      .lb-prev { left: 4px; }
+      .lb-next { right: 4px; }
+      .lb-btn { width: 36px; height: 36px; background: rgba(0,0,0,0.5); }
+      .lb-img-wrap { max-width: 100vw; }
+    }
+
+    /* ── LARGE DESKTOP ── */
+    @media (min-width: 1280px) {
+      .sec-in { max-width: 800px; }
+      .about-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-in">
+      <a class="nav-name" href="#">Ravi</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#family">Family</a></li>
+        <li><a href="#looking-for">Looking For</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">Say Hello</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="photo">
+        <img src="images/portrait.jpg" alt="Ravi" />
+      </div>
+      <h2>Ravi</h2>
+      <p class="hero-sub">Simple living. Thoughtful by nature. Spiritually curious.<br>Looking for a connection rooted in sincerity, depth, and long-term intention.</p>
+      <div class="hero-identity">
+        <span class="ident-item">INFJ</span>
+        <span class="ident-sep">|</span>
+        <span class="ident-item">Susegad Goenkar</span>
+        <span class="ident-sep">|</span>
+        <span class="ident-item">Network Engineer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec">
+      <div class="sec-in reveal">
+        <div class="tag">About</div>
+        <h2>Who I am</h2>
+
+        <p class="desc">Goan by roots, Bengaluru by choice. I work as a Network Engineer; With close to a decade in IT, and it's genuinely work I find interesting. Outside of that, my life is fairly intentional: workouts, mindful eating, meditation, and long rides on the motorcycle when I need to clear my head.</p>
+
+        <p class="desc">I'm an introvert, and I don't pretend otherwise. I'd rather have one honest conversation than ten forgettable ones. I'm drawn to ideas - philosophy, psychology! Care, for me, shows up in small and consistent ways, not grand gestures.</p>
+
+        <p class="desc">Professionally, I'm focused on upskilling and growing into opportunities that allow me to explore a better quality of life and broader experiences.
+Personally, I'm drawn to a slower, more grounded way of living—something simple, meaningful, and shared with someone who finds joy in the quieter side of life.</p>
+
+        <p class="desc">As someone who prefers simplicity, I appreciate the beauty in life's fundamental elements. I find contentment in a minimalist lifestyle, focusing on what truly matters rather than getting overwhelmed by excess!</p>
+
+        <div class="about-grid">
+          <div class="about-item"><span class="about-k">Age</span><span class="about-v">Mid 30s</span></div>
+          <div class="about-item"><span class="about-k">City</span><span class="about-v">Bengaluru, KA (from Goa)</span></div>
+          <div class="about-item"><span class="about-k">Profession</span><span class="about-v">Network Engineer</span></div>
+          <div class="about-item"><span class="about-k">Education</span><span class="about-v">B.E. Computer Science &amp; Systems Engineering<br>Diploma Computer Engineering</span></div>
+          <div class="about-item"><span class="about-k">Height &amp; Weight</span><span class="about-v">178 cm | 75 kg</span></div>
+          <div class="about-item"><span class="about-k">Lifestyle</span><span class="about-v">Minimalist | Health-conscious</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="sec sec-alt">
+      <div class="sec-in reveal">
+        <div class="tag">Interests</div>
+        <h2>What keeps me grounded</h2>
+        <p class="desc">Things that genuinely bring balance and meaning to my life, not just things that look good on a profile.</p>
+        <div class="interest-list">
+          <div class="interest-item"><span class="i-icon">🧘</span><span class="i-text">Meditation &amp; self-reflection</span></div>
+          <div class="interest-item"><span class="i-icon">🏋️</span><span class="i-text">Physical fitness</span></div>
+          <div class="interest-item"><span class="i-icon">🌅</span><span class="i-text">Sunsets on the beach</span></div>
+          <div class="interest-item"><span class="i-icon">🍳</span><span class="i-text">Cooking healthy meals</span></div>
+          <div class="interest-item"><span class="i-icon">📖</span><span class="i-text">Learning &amp; studying</span></div>
+          <div class="interest-item"><span class="i-icon">🌱</span><span class="i-text">Sustainable living</span></div>
+          <div class="interest-item"><span class="i-icon">🏍️</span><span class="i-text">Road trips</span></div>
+          <div class="interest-item"><span class="i-icon">☕</span><span class="i-text">Coffee</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section id="photos">
+    <div class="sec">
+      <div class="sec-in reveal">
+        <div class="tag">Photos</div>
+        <h2>A few glimpses</h2>
+        <p class="desc">Some moments that reflect who I am.</p>
+
+        <div class="gallery">
+          <div class="gal-item gal-tall" onclick="openLightbox(0)">
+            <img src="images/portrait.jpg" alt="Portrait" />
+            <div class="gal-label">Portrait</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(1)">
+            <img src="images/formal.jpg" alt="Formal" />
+            <div class="gal-label">At work</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(2)">
+            <img src="images/outdoors.jpg" alt="Outdoors" />
+            <div class="gal-label">In nature</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(3)">
+            <img src="images/candid.jpg" alt="Candid" />
+            <div class="gal-label">Candid</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(4)">
+            <img src="images/family.jpg" alt="Family" />
+            <div class="gal-label">With family</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(5)">
+            <img src="images/lifestyle.jpg" alt="Lifestyle" />
+            <div class="gal-label">Day to day</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(6)">
+            <img src="images/troubleshooting.jpg" alt="Troubleshooting" />
+            <div class="gal-label">Troubleshooting</div>
+          </div>
+          <div class="gal-item" onclick="openLightbox(7)">
+            <img src="images/susegad.jpg" alt="Susegad Life" />
+            <div class="gal-label">Susegad Life</div>
+          </div>
+        </div>
+
+        <div style="margin-top:3rem; padding-top:2.5rem; border-top:1px solid var(--rule); width:100%;">
+          <h3 style="font-size:clamp(1.1rem,3vw,1.6rem); font-weight:500; letter-spacing:-.02em; color:var(--ink); margin-bottom:.5rem;">What I eat in a day</h3>
+          <p style="font-size:clamp(.82rem,2vw,.92rem); color:var(--muted); line-height:1.75; margin-bottom:0;">This has been my staple for the last 4 years.</p>
+        </div>
+
+        <div class="cook-grid" style="margin-top:1.4rem;">
+          <div class="cook-item" onclick="openCookLightbox(0)">
+            <img src="images/cook-breakfast.jpg" alt="Breakfast" />
+            <div class="cook-label">Breakfast</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(1)">
+            <img src="images/cook-lunch.jpg" alt="Lunch" />
+            <div class="cook-label">Lunch</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(2)">
+            <img src="images/cook-dinner.jpg" alt="Dinner" />
+            <div class="cook-label">Dinner</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(3)">
+            <img src="images/cook-snacks.jpg" alt="Snacks" />
+            <div class="cook-label">Snacks</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(4)">
+            <img src="images/cook-coffee.jpg" alt="Coffee" />
+            <div class="cook-label">Coffee</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(5)">
+            <img src="images/cook-sweets.jpg" alt="Sweets" />
+            <div class="cook-label">Sweets</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY -->
+  <section id="family">
+    <div class="sec sec-alt">
+      <div class="sec-in reveal">
+        <div class="tag">Family</div>
+        <h2>My family</h2>
+        <p class="desc">I come from a close-knit Goan family and share a warm bond with my two sisters. Family has always been an important support system, and the values I grew up with respect, honesty, and responsibility which continue to guide me.</p>
+        <p class="desc">I share a special bond with my nieces, and proudly hold the title of the cool uncle in the family.</p>
+        <p class="desc">Family, for me, is not only about where we come from, but also about the home and life we choose to build together.</p>
+        <div class="family-list">
+          <div class="family-item"><span class="f-role">Father</span><span class="f-detail">Retired Government Servant</span></div>
+          <div class="family-item"><span class="f-role">Mother</span><span class="f-detail">Retired Government Servant</span></div>
+          <div class="family-item"><span class="f-role">Elder Sister (Married)</span><span class="f-detail">Educator</span></div>
+          <div class="family-item"><span class="f-role">Younger Sister (Married)</span><span class="f-detail">Lawyer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKING FOR -->
+  <section id="looking-for">
+    <div class="sec">
+      <div class="sec-in reveal">
+        <div class="tag">Looking For</div>
+        <h2>In a partner</h2>
+        <p class="desc">I am looking for a partner with whom life can feel peaceful, meaningful, and supportive. Someone whose presence brings calmness rather than chaos, and with whom everyday life feels natural.</p>
+        <div class="quote-wrap">
+          <p>"More than external qualities, I value character, emotional maturity, and inner strength. I am looking for a partnership built on mutual respect, understanding, and companionship, where both people support each other's growth."</p>
+        </div>
+        <div class="lf-grid">
+          <div class="lf-card">
+            <div class="lf-num">01</div>
+            <h3>Kindness &amp; Compassion</h3>
+            <p>Naturally kind and considerate — someone who treats people with respect and empathy, not just when it is easy.</p>
+          </div>
+          <div class="lf-card">
+            <div class="lf-num">02</div>
+            <h3>Emotional Maturity</h3>
+            <p>Self-aware, balanced, and able to communicate openly and honestly. Calm in difficulty, and thoughtful after it.</p>
+          </div>
+          <div class="lf-card">
+            <div class="lf-num">03</div>
+            <h3>Spiritual Inclination</h3>
+            <p>A thoughtful or spiritual side — whether through faith, meditation, or simply a deeper and quieter understanding of life.</p>
+          </div>
+          <div class="lf-card">
+            <div class="lf-num">04</div>
+            <h3>Simplicity &amp; Balance</h3>
+            <p>Someone who appreciates a grounded life and does not feel the need to constantly chase external validation or stimulation.</p>
+          </div>
+          <div class="lf-card">
+            <div class="lf-num">05</div>
+            <h3>Curiosity &amp; Growth</h3>
+            <p>A person who continues to learn, reflect, and grow — someone who values personal development and meaningful living.</p>
+          </div>
+          <div class="lf-card">
+            <div class="lf-num">06</div>
+            <h3>Rootedness &amp; Cultural Warmth</h3>
+            <p>Someone who values her roots — family, traditions, and culture — and brings that warmth and sense of belonging into the life we build together.</p>
+          </div>
+        </div>
+        <p class="desc" style="margin-top:2rem; font-style:italic;">I value conversations that are sincere and purposeful — especially when both people are genuinely exploring the possibility of building a future together.</p>
+
+        <!-- NON-NEGOTIABLES -->
+        <div class="nn-wrap">
+          <div class="nn-tag">Non-Negotiables</div>
+          <h3 class="nn-title">On health &amp; lifestyle</h3>
+          <p class="nn-body">Growing up, I had low immunity and couldn't keep up with physical activities the way other kids did. That pushed me to start paying attention to nutrition from around the age of 16–17. The first thing I did was quit aerated drinks. Over time, I reduced packaged foods — chips, biscuits, juices — and for the last four years I have been eating really clean. I haven't had sugar in over 18 months.</p>
+          <p class="nn-body">I don't drink, smoke, or use any substances. That's not a rule I follow reluctantly — it's simply how I live, and it's been this way for a long time.</p>
+          <div class="nn-callout">
+            <p>I don't expect anyone to follow my diet — that's a personal journey and I respect that fully. But since we would be sharing a kitchen and a life, I'd genuinely prefer someone who approaches food with some mindfulness. Nothing extreme or fancy — just someone who eats with intention and cares about what goes into their body.</p>
+          </div>
+        </div>
+
+        <!-- NON-NEGOTIABLE: Relationships & Commitment -->
+        <div class="nn-wrap">
+          <div class="nn-tag">Relationships, Spirituality &amp; Lifelong Commitment</div>
+          <h3 class="nn-title">On my path to this point</h3>
+          <p class="nn-body">Because of family responsibilities and a strong focus on my career during my 20s and early 30s, I never actively pursued romantic relationships. It wasn't due to a lack of opportunities — it was a conscious decision to prioritise other areas of life at that stage.</p>
+          <p class="nn-body">As a result, I feel I may naturally connect better with someone who has had a somewhat similar journey — someone who may have spent their 20s focusing on family, career, health, spirituality, or personal growth rather than actively seeking relationships.</p>
+          <div class="nn-callout">
+            <p>That said, I respect that everyone's path is different, and I do not view any life choice as better or worse than another. This is simply a reflection of the kind of shared experiences and values that I believe may help build a deeper connection — and a lifelong partnership.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-sec" id="contact">
+    <div style="max-width:520px; margin:0 auto;">
+      <div class="tag" style="justify-content:center; color:var(--earth);">
+        <span>Connect</span>
+      </div>
+      <h2>Let's start with a hello.</h2>
+      <p class="desc" style="color:#b09a72; max-width:400px; margin:0 auto 2rem; text-align:center;">If something here resonated, reach out. No formalities needed — a simple, honest note is enough.</p>
+      <a class="insta-link" href="https://www.instagram.com/ssh_ravi" target="_blank" rel="noopener">
+        <svg class="insta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="insta-handle">@ssh_ravi</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© Ravi · Bengaluru, KA, India</p>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#family">Family</a></li>
+      <li><a href="#looking-for">Looking For</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lb-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+
+    <div class="lb-top">
+      <span class="lb-title" id="lb-title"></span>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-close" onclick="closeLightbox()" aria-label="Close photo viewer">&times;</button>
+    </div>
+
+    <div class="lb-stage">
+      <div class="lb-img-wrap">
+        <button class="lb-btn lb-prev" onclick="shiftLightbox(-1)" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <div class="lb-img-shield"></div>
+        <img id="lb-img" src="" alt="" draggable="false" />
+        <button class="lb-btn lb-next" onclick="shiftLightbox(1)" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="lb-bottom" id="lb-thumbs"></div>
+
+  </div>
+
+  <script>
+    // ── Image protection ──
+    document.addEventListener('contextmenu', e => {
+      if (e.target.tagName === 'IMG' || e.target.closest('.gallery') || e.target.closest('.lb-overlay')) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+      }
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+      img.setAttribute('draggable', 'false');
+      img.addEventListener('dragstart', e => e.preventDefault());
+    });
+
+    document.documentElement.classList.add('js-ready');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── Lightbox ──
+    const photos = [
+      { src: 'images/portrait.jpg',        label: 'Portrait'       },
+      { src: 'images/formal.jpg',           label: 'At work'        },
+      { src: 'images/outdoors.jpg',         label: 'In nature'      },
+      { src: 'images/candid.jpg',           label: 'Candid'         },
+      { src: 'images/family.jpg',           label: 'With family'    },
+      { src: 'images/lifestyle.jpg',        label: 'Day to day'     },
+      { src: 'images/troubleshooting.jpg',  label: 'Troubleshooting'},
+      { src: 'images/susegad.jpg',          label: 'Susegad Life'   },
+    ];
+
+    let current = 0;
+
+    const overlay  = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lb-img');
+    const lbTitle  = document.getElementById('lb-title');
+    const lbCtr    = document.getElementById('lb-counter');
+    const lbThumbs = document.getElementById('lb-thumbs');
+
+    photos.forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'lb-thumb';
+      div.id = 'lb-thumb-' + i;
+      div.setAttribute('role', 'button');
+      div.setAttribute('aria-label', p.label);
+      div.onclick = () => goTo(i);
+      div.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+      lbThumbs.appendChild(div);
+    });
+
+    function openLightbox(index) {
+      current = index;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      render(false);
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function goTo(index) {
+      if (index === current) return;
+      current = (index + photos.length) % photos.length;
+      render(true);
+    }
+
+    function shiftLightbox(dir) {
+      current = (current + dir + photos.length) % photos.length;
+      render(true);
+    }
+
+    function render(animate) {
+      const p = photos[current];
+      lbTitle.textContent = p.label;
+      lbCtr.textContent   = `${current + 1} / ${photos.length}`;
+
+      document.querySelectorAll('.lb-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === current);
+      });
+      const activeThumb = document.getElementById('lb-thumb-' + current);
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+
+      if (animate) {
+        lbImg.classList.add('fading');
+        setTimeout(() => {
+          lbImg.src = p.src;
+          lbImg.alt = p.label;
+          lbImg.classList.remove('fading');
+        }, 200);
+      } else {
+        lbImg.src = p.src;
+        lbImg.alt = p.label;
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    let touchStartX = 0;
+    overlay.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    overlay.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) shiftLightbox(dx < 0 ? 1 : -1);
+    });
+
+    // ── Cooking lightbox (reuses same overlay) ──
+    const cookPhotos = [
+      { src: 'images/cook-breakfast.jpg', label: 'Breakfast' },
+      { src: 'images/cook-lunch.jpg',     label: 'Lunch'     },
+      { src: 'images/cook-dinner.jpg',    label: 'Dinner'    },
+      { src: 'images/cook-snacks.jpg',    label: 'Snacks'    },
+      { src: 'images/cook-coffee.jpg',    label: 'Coffee'    },
+      { src: 'images/cook-sweets.jpg',    label: 'Sweets'    },
+    ];
+
+    let cookMode = false;
+
+    function openCookLightbox(index) {
+      cookMode = true;
+      // Swap thumb strip
+      lbThumbs.innerHTML = '';
+      cookPhotos.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'lb-thumb';
+        div.id = 'lb-cook-thumb-' + i;
+        div.setAttribute('role', 'button');
+        div.setAttribute('aria-label', p.label);
+        div.onclick = () => goToCook(i);
+        div.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+        lbThumbs.appendChild(div);
+      });
+      current = index;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderCook(false);
+    }
+
+    function goToCook(index) {
+      if (index === current) return;
+      current = (index + cookPhotos.length) % cookPhotos.length;
+      renderCook(true);
+    }
+
+    function renderCook(animate) {
+      const p = cookPhotos[current];
+      lbTitle.textContent = p.label;
+      lbCtr.textContent   = `${current + 1} / ${cookPhotos.length}`;
+      document.querySelectorAll('#lb-thumbs .lb-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === current);
+      });
+      const activeThumb = document.getElementById('lb-cook-thumb-' + current);
+      if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      if (animate) {
+        lbImg.classList.add('fading');
+        setTimeout(() => { lbImg.src = p.src; lbImg.alt = p.label; lbImg.classList.remove('fading'); }, 200);
+      } else {
+        lbImg.src = p.src; lbImg.alt = p.label;
+      }
+    }
+
+    // Patch close to restore portrait thumbs
+    const origClose = closeLightbox;
+    window.closeLightbox = function() {
+      origClose();
+      if (cookMode) {
+        cookMode = false;
+        lbThumbs.innerHTML = '';
+        photos.forEach((p, i) => {
+          const div = document.createElement('div');
+          div.className = 'lb-thumb';
+          div.id = 'lb-thumb-' + i;
+          div.setAttribute('role', 'button');
+          div.setAttribute('aria-label', p.label);
+          div.onclick = () => goTo(i);
+          div.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+          lbThumbs.appendChild(div);
+        });
+      }
+    };
+
+    // Patch keyboard nav for cook mode
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('active') || !cookMode) return;
+      if (e.key === 'ArrowLeft')  { current = (current - 1 + cookPhotos.length) % cookPhotos.length; renderCook(true); }
+      if (e.key === 'ArrowRight') { current = (current + 1) % cookPhotos.length; renderCook(true); }
+    });
+
+    // Patch nav buttons for cook mode
+    document.querySelector('.lb-prev').addEventListener('click', () => { if (cookMode) { current = (current - 1 + cookPhotos.length) % cookPhotos.length; renderCook(true); } }, true);
+    document.querySelector('.lb-next').addEventListener('click', () => { if (cookMode) { current = (current + 1) % cookPhotos.length; renderCook(true); } }, true);
+  </script>
+</body>
+</html>
