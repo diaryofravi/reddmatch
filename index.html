@@ -509,6 +509,106 @@
     .lf-card h3 { font-size: clamp(.88rem, 2vw, 1rem); font-weight: 500; color: var(--ink); margin-bottom: .35rem; letter-spacing: -.01em; }
     .lf-card p  { font-size: clamp(.78rem, 1.8vw, .83rem); color: var(--muted); line-height: 1.6; }
 
+    /* ── NON-NEGOTIABLES ── */
+    .nn-wrap {
+      margin-top: 2.8rem;
+      width: 100%;
+      padding-top: 2.2rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .nn-tag {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .nn-tag::after { content: ''; display: block; height: 1px; width: 32px; background: var(--stone); }
+
+    .nn-title {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .nn-body {
+      font-size: clamp(.88rem, 2vw, .97rem);
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 640px;
+      margin-bottom: .9rem;
+    }
+
+    .nn-callout {
+      background: var(--earth-bg);
+      border: 1px solid rgba(196,152,0,0.25);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1.4rem;
+      max-width: 640px;
+    }
+
+    .nn-callout p {
+      font-size: clamp(.85rem, 2vw, .93rem);
+      color: var(--body);
+      line-height: 1.8;
+    }
+
+    /* ── COOKING GALLERY ── */
+    .cook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 1.8rem;
+      width: 100%;
+    }
+
+    .cook-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--surface);
+      aspect-ratio: 1/1;
+      cursor: zoom-in;
+    }
+
+    .cook-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .cook-item:hover img { transform: scale(1.04); }
+
+    .cook-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: .45rem .7rem;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .cook-item:hover .cook-label { opacity: 1; }
+
+    @media (max-width: 480px) {
+      .cook-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    }
+
     /* ── CONTACT ── */
     .contact-sec {
       background: var(--contact-bg);
@@ -645,8 +745,8 @@
 
         <p class="desc">I'm an introvert, and I don't pretend otherwise. I'd rather have one honest conversation than ten forgettable ones. I'm drawn to ideas - philosophy, psychology! Care, for me, shows up in small and consistent ways, not grand gestures.</p>
 
-        <p class="desc">Professionally, I’m focused on upskilling and growing into opportunities that allow me to explore a better quality of life and broader experiences.
-Personally, I’m drawn to a slower, more grounded way of living—something simple, meaningful, and shared with someone who finds joy in the quieter side of life.</p>
+        <p class="desc">Professionally, I'm focused on upskilling and growing into opportunities that allow me to explore a better quality of life and broader experiences.
+Personally, I'm drawn to a slower, more grounded way of living—something simple, meaningful, and shared with someone who finds joy in the quieter side of life.</p>
 
         <p class="desc">As someone who prefers simplicity, I appreciate the beauty in life's fundamental elements. I find contentment in a minimalist lifestyle, focusing on what truly matters rather than getting overwhelmed by excess!</p>
 
@@ -690,6 +790,34 @@ Personally, I’m drawn to a slower, more grounded way of living—something sim
         <div class="tag">Photos</div>
         <h2>A few glimpses</h2>
         <p class="desc">Some moments that reflect who I am.</p>
+
+        <div class="cook-grid" style="margin-top:2rem;">
+          <div class="cook-item" onclick="openCookLightbox(0)">
+            <img src="images/cook-breakfast.jpg" alt="Breakfast" />
+            <div class="cook-label">Breakfast</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(1)">
+            <img src="images/cook-lunch.jpg" alt="Lunch" />
+            <div class="cook-label">Lunch</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(2)">
+            <img src="images/cook-dinner.jpg" alt="Dinner" />
+            <div class="cook-label">Dinner</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(3)">
+            <img src="images/cook-snacks.jpg" alt="Snacks" />
+            <div class="cook-label">Snacks</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(4)">
+            <img src="images/cook-coffee.jpg" alt="Coffee" />
+            <div class="cook-label">Coffee</div>
+          </div>
+          <div class="cook-item" onclick="openCookLightbox(5)">
+            <img src="images/cook-sweets.jpg" alt="Sweets" />
+            <div class="cook-label">Sweets</div>
+          </div>
+        </div>
+
         <div class="gallery">
           <div class="gal-item gal-tall" onclick="openLightbox(0)">
             <img src="images/portrait.jpg" alt="Portrait" />
@@ -790,6 +918,29 @@ Personally, I’m drawn to a slower, more grounded way of living—something sim
           </div>
         </div>
         <p class="desc" style="margin-top:2rem; font-style:italic;">I value conversations that are sincere and purposeful — especially when both people are genuinely exploring the possibility of building a future together.</p>
+
+        <!-- NON-NEGOTIABLES -->
+        <div class="nn-wrap">
+          <div class="nn-tag">Non-Negotiables</div>
+          <h3 class="nn-title">On health &amp; lifestyle</h3>
+          <p class="nn-body">Growing up, I had low immunity and couldn't keep up with physical activities the way other kids did. That pushed me to start paying attention to nutrition from around the age of 16–17. The first thing I did was quit aerated drinks. Over time, I reduced packaged foods — chips, biscuits, juices — and for the last four years I have been eating really clean. I haven't had sugar in over 18 months.</p>
+          <p class="nn-body">I don't drink, smoke, or use any substances. That's not a rule I follow reluctantly — it's simply how I live, and it's been this way for a long time.</p>
+          <div class="nn-callout">
+            <p>I don't expect anyone to follow my diet — that's a personal journey and I respect that fully. But since we would be sharing a kitchen and a life, I'd genuinely prefer someone who approaches food with some mindfulness. Nothing extreme or fancy — just someone who eats with intention and cares about what goes into their body.</p>
+          </div>
+        </div>
+
+        <!-- NON-NEGOTIABLE: Relationships & Commitment -->
+        <div class="nn-wrap">
+          <div class="nn-tag">Relationships, Spirituality &amp; Lifelong Commitment</div>
+          <h3 class="nn-title">On my path to this point</h3>
+          <p class="nn-body">Because of family responsibilities and a strong focus on my career during my 20s and early 30s, I never actively pursued romantic relationships. It wasn't due to a lack of opportunities — it was a conscious decision to prioritise other areas of life at that stage.</p>
+          <p class="nn-body">As a result, I feel I may naturally connect better with someone who has had a somewhat similar journey — someone who may have spent their 20s focusing on family, career, health, spirituality, or personal growth rather than actively seeking relationships.</p>
+          <div class="nn-callout">
+            <p>That said, I respect that everyone's path is different, and I do not view any life choice as better or worse than another. This is simply a reflection of the kind of shared experiences and values that I believe may help build a deeper connection — and a lifelong partnership.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -978,6 +1129,92 @@ Personally, I’m drawn to a slower, more grounded way of living—something sim
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) > 50) shiftLightbox(dx < 0 ? 1 : -1);
     });
+
+    // ── Cooking lightbox (reuses same overlay) ──
+    const cookPhotos = [
+      { src: 'images/cook-breakfast.jpg', label: 'Breakfast' },
+      { src: 'images/cook-lunch.jpg',     label: 'Lunch'     },
+      { src: 'images/cook-dinner.jpg',    label: 'Dinner'    },
+      { src: 'images/cook-snacks.jpg',    label: 'Snacks'    },
+      { src: 'images/cook-coffee.jpg',    label: 'Coffee'    },
+      { src: 'images/cook-sweets.jpg',    label: 'Sweets'    },
+    ];
+
+    let cookMode = false;
+
+    function openCookLightbox(index) {
+      cookMode = true;
+      // Swap thumb strip
+      lbThumbs.innerHTML = '';
+      cookPhotos.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'lb-thumb';
+        div.id = 'lb-cook-thumb-' + i;
+        div.setAttribute('role', 'button');
+        div.setAttribute('aria-label', p.label);
+        div.onclick = () => goToCook(i);
+        div.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+        lbThumbs.appendChild(div);
+      });
+      current = index;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderCook(false);
+    }
+
+    function goToCook(index) {
+      if (index === current) return;
+      current = (index + cookPhotos.length) % cookPhotos.length;
+      renderCook(true);
+    }
+
+    function renderCook(animate) {
+      const p = cookPhotos[current];
+      lbTitle.textContent = p.label;
+      lbCtr.textContent   = `${current + 1} / ${cookPhotos.length}`;
+      document.querySelectorAll('#lb-thumbs .lb-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === current);
+      });
+      const activeThumb = document.getElementById('lb-cook-thumb-' + current);
+      if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      if (animate) {
+        lbImg.classList.add('fading');
+        setTimeout(() => { lbImg.src = p.src; lbImg.alt = p.label; lbImg.classList.remove('fading'); }, 200);
+      } else {
+        lbImg.src = p.src; lbImg.alt = p.label;
+      }
+    }
+
+    // Patch close to restore portrait thumbs
+    const origClose = closeLightbox;
+    window.closeLightbox = function() {
+      origClose();
+      if (cookMode) {
+        cookMode = false;
+        lbThumbs.innerHTML = '';
+        photos.forEach((p, i) => {
+          const div = document.createElement('div');
+          div.className = 'lb-thumb';
+          div.id = 'lb-thumb-' + i;
+          div.setAttribute('role', 'button');
+          div.setAttribute('aria-label', p.label);
+          div.onclick = () => goTo(i);
+          div.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+          lbThumbs.appendChild(div);
+        });
+      }
+    };
+
+    // Patch keyboard nav for cook mode
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('active') || !cookMode) return;
+      if (e.key === 'ArrowLeft')  { current = (current - 1 + cookPhotos.length) % cookPhotos.length; renderCook(true); }
+      if (e.key === 'ArrowRight') { current = (current + 1) % cookPhotos.length; renderCook(true); }
+    });
+
+    // Patch nav buttons for cook mode
+    document.querySelector('.lb-prev').addEventListener('click', () => { if (cookMode) { current = (current - 1 + cookPhotos.length) % cookPhotos.length; renderCook(true); } }, true);
+    document.querySelector('.lb-next').addEventListener('click', () => { if (cookMode) { current = (current + 1) % cookPhotos.length; renderCook(true); } }, true);
   </script>
 </body>
 </html>
